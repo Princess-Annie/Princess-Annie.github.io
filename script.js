@@ -48,6 +48,12 @@ document.addEventListener('click', (e) => {
     }
 });
 
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        closeSidebar();
+    });
+});
+
 // Smooth Scrolling for Menu Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
