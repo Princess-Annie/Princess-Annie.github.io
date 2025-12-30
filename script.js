@@ -1,7 +1,6 @@
 // Mobile Menu Toggle
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const sidebar = document.getElementById('sidebar');
-const sidebarClose = document.getElementById('sidebarClose');
 const menuLinks = document.querySelectorAll('.menu-link');
 
 // Function to close sidebar
@@ -20,7 +19,6 @@ function openSidebar() {
     icon.classList.add('fa-times');
 }
 
-
 // Toggle sidebar on hamburger menu click
 mobileMenuToggle.addEventListener('click', () => {
     if (sidebar.classList.contains('active')) {
@@ -30,18 +28,12 @@ mobileMenuToggle.addEventListener('click', () => {
     }
 });
 
-// Close sidebar when X button is clicked
-sidebarClose.addEventListener('click', () => {
-    closeSidebar();
-});
-
 // Close sidebar when clicking on menu links (mobile)
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
         closeSidebar();
     });
 });
-
 
 // Close sidebar when clicking outside (mobile)
 document.addEventListener('click', (e) => {
@@ -52,41 +44,29 @@ document.addEventListener('click', (e) => {
     }
 });
 
-
-// Smooth Scrolling for Menu Links
+// Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const headerOffset = 100;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+            const offset = target.offsetTop - 100;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
         }
     });
 });
 
 // Active Menu Link on Scroll
 const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.menu-link');
-
 window.addEventListener('scroll', () => {
     let current = '';
-    
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 200)) {
+        if (window.pageYOffset >= section.offsetTop - 200) {
             current = section.getAttribute('id');
         }
     });
 
-    navLinks.forEach(link => {
+    menuLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').slice(1) === current) {
             link.classList.add('active');
@@ -96,30 +76,20 @@ window.addEventListener('scroll', () => {
 
 // Search Functionality
 const searchInput = document.getElementById('searchInput');
+const sectionTexts = Array.from(sections).map(section => ({
+    id: section.getAttribute('id'),
+    text: section.textContent.toLowerCase()
+}));
+
 searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    
-    sections.forEach(section => {
-        const sectionText = section.textContent.toLowerCase();
-        const sectionId = section.getAttribute('id');
-        const menuLink = document.querySelector(`a[href="#${sectionId}"]`);
-        
-        if (menuLink) {
-            if (sectionText.includes(searchTerm) || searchTerm === '') {
-                menuLink.style.display = 'block';
-            } else {
-                menuLink.style.display = 'none';
-            }
-        }
+    const term = e.target.value.toLowerCase();
+    sectionTexts.forEach(section => {
+        const link = document.querySelector(`a[href="#${section.id}"]`);
+        if (link) link.style.display = (section.text.includes(term) || term === '') ? 'block' : 'none';
     });
 });
 
 // Intersection Observer for Animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -127,9 +97,8 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.style.transform = 'translateY(0)';
         }
     });
-}, observerOptions);
+}, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-// Observe all cards and sections
 document.querySelectorAll('.project-card, .certification-card, .contact-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -137,7 +106,7 @@ document.querySelectorAll('.project-card, .certification-card, .contact-card').f
     observer.observe(el);
 });
 
-// Add active style to menu links
+// Active style for menu links
 const style = document.createElement('style');
 style.textContent = `
     .menu-link.active {
@@ -149,9 +118,3 @@ style.textContent = `
 document.head.appendChild(style);
 
 console.log('Portfolio website loaded successfully!');
-
-   
-    
-  
-           
-       
