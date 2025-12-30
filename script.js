@@ -1,7 +1,34 @@
 // Mobile Menu Toggle
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const sidebar = document.getElementById('sidebar');
+const sidebarClose = document.getElementById('sidebarClose');
 const menuLinks = document.querySelectorAll('.menu-link');
+
+// Function to close sidebar
+function closeSidebar() {
+    sidebar.classList.remove('active');
+    const icon = mobileMenuToggle.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
+}
+
+// Function to open sidebar
+function openSidebar() {
+    sidebar.classList.add('active');
+    const icon = mobileMenuToggle.querySelector('i');
+    icon.classList.remove('fa-bars');
+    icon.classList.add('fa-times');
+}
+
+// Toggle sidebar on hamburger menu click
+mobileMenuToggle.addEventListener('click', () => {
+    if (sidebar.classList.contains('active')) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+});
+
 
 mobileMenuToggle.addEventListener('click', () => {
     sidebar.classList.toggle('active');
