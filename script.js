@@ -29,42 +29,22 @@ mobileMenuToggle.addEventListener('click', () => {
     }
 });
 
-
-mobileMenuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-    
-    // Change icon
-    const icon = mobileMenuToggle.querySelector('i');
-    if (sidebar.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-    } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-    }
+// Close sidebar when X button is clicked
+sidebarClose.addEventListener('click', () => {
+    closeSidebar();
 });
 
 // Close sidebar when clicking on menu links (mobile)
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-        if (window.innerWidth <= 992) {
-            sidebar.classList.remove('active');
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+        closeSidebar();
     });
 });
 
 // Close sidebar when clicking outside (mobile)
 document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 992) {
-        if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-            sidebar.classList.remove('active');
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+    if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        closeSidebar();
     }
 });
 
@@ -164,3 +144,9 @@ style.textContent = `
 document.head.appendChild(style);
 
 console.log('Portfolio website loaded successfully!');
+
+   
+    
+  
+           
+       
