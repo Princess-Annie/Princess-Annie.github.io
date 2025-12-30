@@ -20,26 +20,30 @@ function openSidebar() {
     icon.classList.add('fa-times');
 }
 
-// Toggle sidebar on hamburger menu click
+
 mobileMenuToggle.addEventListener('click', () => {
-    if (sidebar.classList.contains('active')) {
-        closeSidebar();
-    } else {
-        openSidebar();
+        sidebar.classList.toggle('active');
+        mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
+        mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
+    });
+
+    if (sidebarClose) {
+        sidebarClose.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+        });
     }
-});
 
-// Close sidebar when X button is clicked
-sidebarClose.addEventListener('click', () => {
-    closeSidebar();
-});
-
-// Close sidebar when clicking on menu links (mobile)
 menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        closeSidebar();
+        link.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+        });
     });
 });
+
 
 // Close sidebar when clicking outside (mobile)
 document.addEventListener('click', (e) => {
@@ -48,11 +52,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        closeSidebar();
-    });
-});
 
 // Smooth Scrolling for Menu Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
