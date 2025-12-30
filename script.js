@@ -1,5 +1,4 @@
 // Mobile Menu Toggle
-document.addEventListener('DOMContentLoaded', () => {
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const sidebar = document.getElementById('sidebar');
 const sidebarClose = document.getElementById('sidebarClose');
@@ -22,33 +21,33 @@ function openSidebar() {
 }
 
 
+// Toggle sidebar on hamburger menu click
 mobileMenuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-        mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
-        mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
-    });
-
-    if (sidebarClose) {
-        sidebarClose.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-        });
+    if (sidebar.classList.contains('active')) {
+        closeSidebar();
+    } else {
+        openSidebar();
     }
+});
 
+// Close sidebar when X button is clicked
+sidebarClose.addEventListener('click', () => {
+    closeSidebar();
+});
+
+// Close sidebar when clicking on menu links (mobile)
 menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-            mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-        });
+    link.addEventListener('click', () => {
+        closeSidebar();
     });
 });
 
 
 // Close sidebar when clicking outside (mobile)
 document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+    if (sidebar.classList.contains('active') &&
+        !sidebar.contains(e.target) &&
+        !mobileMenuToggle.contains(e.target)) {
         closeSidebar();
     }
 });
