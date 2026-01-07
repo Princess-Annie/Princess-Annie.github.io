@@ -423,7 +423,7 @@ body {
 
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 20px;
     align-items: start; 
     max-width: 1000px;  
@@ -499,7 +499,7 @@ body {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 30px;
     max-width: 1000px;
     margin: 0 auto;
