@@ -603,11 +603,11 @@ body {
     }
     
     .certifications-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     
     .contact-grid {
-        grid-template-columns:  repeat(3, 1fr);
+        grid-template-columns:  repeat(3, 1fr) !important;
     }
     
     .main-heading {
