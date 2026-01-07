@@ -219,6 +219,9 @@ body {
     padding-bottom: 12px;
     border-bottom: 3px solid var(--primary-color);
     display: inline-block;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Profile Section */
@@ -438,6 +441,7 @@ body {
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .certification-card:hover {
@@ -477,6 +481,9 @@ body {
     padding: 18px 20px;
     background: #f7f4f0;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
 }
 
 .certification-content h3 {
@@ -603,11 +610,11 @@ body {
     }
     
     .certifications-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .contact-grid {
-        grid-template-columns:  repeat(3, 1fr) !important;
+        grid-template-columns:  repeat(3, 1fr);
     }
     
     .main-heading {
@@ -644,11 +651,11 @@ body {
         width: 280px;
     }
     .certifications-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
     .contact-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr);
         gap: 15px;
     }
 }
