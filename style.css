@@ -183,25 +183,28 @@ body {
 
 .logo {
     flex: 1; /* Pushes social links to the right */
-    font-size: 24px;
+    font-size: 32px;
     color: var(--secondary-color);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .social-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 
 .social-links a {
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 26px;
     transition: var(--transition);
+    display: flex; 
+    align-items: center; 
 }
 
 .social-links a:hover {
     color: var(--primary-color);
-    transform: translateY(-3px);
+    transform: translateY(-3px)  scale(1.1);
 }
 
 /* Sections */
@@ -224,7 +227,7 @@ body {
 }
 .section-heading-dark {
     font-size: 32px;
-    color: #f7f4f0;  /* ✅ This is fine - keep it */
+    color: #f7f4f0;  
     margin-bottom: 30px;
     padding-bottom: 10px;
     border-bottom: 3px solid var(--primary-color);
